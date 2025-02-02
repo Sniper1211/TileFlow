@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字华容道</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>数字华容道</h1>
+        <div class="puzzle-board" id="puzzle-board"></div>
+        <div class="controls">
+            <button id="reset-button">重新开始</button>
+            <button id="increase-difficulty">增加难度</button>
+            <button id="decrease-difficulty">减小难度</button>
+            <button id="auto-solve">自动解</button>
+            <button id="pause-button">暂停</button>
+        </div>
+        <p id="move-counter">移动次数: 0</p>
+    </div>
+    <script src="script.js"></script>
+    <script src="solver.js"></script>
+</body>
+</html>
