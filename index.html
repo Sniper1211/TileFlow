@@ -2,24 +2,96 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <!-- 基础元数据 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数字华容道</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- ===================== 新增 SEO 配置 ===================== -->
+    <title>TileFlow 数字华容道 | 在线解谜游戏</title>
+    <meta name="description" 
+          content="TileFlow 是一款经典数字华容道在线游戏，支持3x3和4x4难度，提供智能解谜算法和流畅动画体验">
+    <meta name="keywords" 
+          content="数字华容道, 拼图游戏, 智力游戏, 算法解谜, 在线游戏">
+    <meta name="author" content="你的名字或团队名">
+    
+    <!-- Open Graph 社交分享优化 -->
+    <meta property="og:title" content="TileFlow 数字华容道 | 在线解谜游戏">
+    <meta property="og:description" 
+          content="挑战经典数字华容道，体验智能解谜提示和流畅动画">
+    <meta property="og:image" content="https://你的域名.com/images/cover.png">
+    <meta property="og:url" content="https://你的域名.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter 卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@你的Twitter账号">
+    
+    <!-- ===================== 样式和字体 ===================== -->
+    <!-- 内联关键CSS (保证首屏加载速度) -->
+    <style>
+        /* 基础布局 - 确保游戏容器可见 */
+        .game-container {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+        
+        /* 临时棋盘样式 - 避免布局偏移 */
+        .puzzle-board {
+            min-height: 400px; /* 根据最大难度设置 */
+        }
+    </style>
+    
+    <!-- 异步加载非关键CSS -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- ===================== 结构化数据 ===================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "TileFlow 数字华容道",
+        "url": "https://你的域名.com",
+        "image": "https://你的域名.com/images/cover.png",
+        "description": "在线数字华容道解谜游戏",
+        "operatingSystem": "跨平台",
+        "applicationCategory": "益智游戏"
+    }
+    </script>
 </head>
+
 <body>
+    <!-- ===================== 游戏容器 ===================== -->
     <div class="game-container">
-        <h1>数字华容道</h1>
+        <h1>TileFlow 数字华容道</h1>  <!-- 标题增强品牌词 -->
+        
+        <!-- 游戏棋盘 -->
         <div class="puzzle-board" id="puzzle-board"></div>
+        
+        <!-- 控制按钮 -->
         <div class="controls">
-            <button id="reset-button">重新开始</button>
-            <button id="increase-difficulty">增加难度</button>
-            <button id="decrease-difficulty">减小难度</button>
-            <button id="auto-solve">自动解</button>
+            <button id="reset-button" aria-label="重新开始游戏">重新开始</button>
+            <button id="increase-difficulty" aria-label="增加难度">难度+</button>
+            <button id="decrease-difficulty" aria-label="降低难度">难度-</button>
+            <button id="auto-solve" aria-label="自动解谜">自动解</button>
         </div>
-        <p id="move-counter">移动次数: 0</p>
+        
+        <!-- 数据统计 -->
+        <p id="move-counter" role="status">移动次数: <span>0</span></p>
+        
+        <!-- SEO 友好提示 -->
+        <div class="seo-hint" hidden>
+            <p>免费在线数字华容道游戏，支持移动端和桌面端</p>
+        </div>
     </div>
-    <script src="script.js"></script>
-    <script src="solver.js"></script>
+
+    <!-- ===================== 脚本优化 ===================== -->
+    <script src="script.js" defer></script>  <!-- 添加 defer 延迟加载 -->
+    <script src="solver.js" defer></script>
 </body>
 </html>

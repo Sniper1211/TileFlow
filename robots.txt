@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ok9981.com/sitemap.xml
