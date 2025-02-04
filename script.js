@@ -152,9 +152,12 @@ class GameUI {
 
     changeSize(delta) {
         const newSize = this.game.size + delta;
-        if (newSize < 3 || newSize > 6) return;
+        if (newSize < 3 || newSize > 4) return;
         this.game = new GameState(newSize);
         this.render();
+        // 新增：动态禁用按钮
+        document.getElementById('increase-difficulty').disabled = (newSize === 4);
+        document.getElementById('decrease-difficulty').disabled = (newSize === 3);
     }
 }
 

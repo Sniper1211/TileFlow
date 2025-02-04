@@ -3,7 +3,7 @@ class PuzzleSolver {
     constructor(ui) {
       this.ui = ui;
       this.isSolving = false;
-      this.isPaused = false;
+      // this.isPaused = false;
       this.solutionSteps = [];
       this.stepIndex = 0;
       this.initControls();
@@ -12,18 +12,18 @@ class PuzzleSolver {
     // 初始化控制按钮
     initControls() {
       const autoSolveBtn = document.getElementById('auto-solve');
-      const pauseBtn = document.getElementById('pause-button');
+      // const pauseBtn = document.getElementById('pause-button');
   
       autoSolveBtn.addEventListener('click', () => {
         if (this.isSolving) this.stop();
         else this.start();
       });
   
-      pauseBtn.addEventListener('click', () => {
-        this.isPaused = !this.isPaused;
-        pauseBtn.textContent = this.isPaused ? '继续' : '暂停';
-        if (!this.isPaused) this.playNextStep();
-      });
+      // pauseBtn.addEventListener('click', () => {
+      //   this.isPaused = !this.isPaused;
+      //   pauseBtn.textContent = this.isPaused ? '继续' : '暂停';
+      //   if (!this.isPaused) this.playNextStep();
+      // });
     }
   
     // 启动解谜流程
@@ -60,7 +60,7 @@ class PuzzleSolver {
   
     // 执行下一步
     playNextStep() {
-      if (!this.isSolving || this.isPaused) return;
+      if (!this.isSolving) return;
       if (this.stepIndex >= this.solutionSteps.length) return this.stop();
   
       const direction = this.solutionSteps[this.stepIndex];
