@@ -1,6 +1,6 @@
 // script.js
 class GameState {
-    constructor(size = 4) {
+    constructor(size = 3) {
         this.size = size;
         this.moves = 0;
         this.tiles = [];
@@ -76,9 +76,25 @@ class GameUI {
     constructor() {
         this.board = document.getElementById('puzzle-board');
         this.moveCounter = document.getElementById('move-counter');
+        
+        // 安全创建难度显示
+        this.difficultyDisplay = document.getElementById('difficulty-display');
+        if (!this.difficultyDisplay) {
+            this.difficultyDisplay = document.createElement('p');
+            this.difficultyDisplay.id = 'difficulty-display';
+            this.difficultyDisplay.style.textAlign = 'center';
+            this.difficultyDisplay.style.marginBottom = '15px';
+            document.querySelector('.game-container').prepend(this.difficultyDisplay);
+        }
+        
         this.game = new GameState();
         this.initEventListeners();
         this.render();
+        this.updateDifficultyDisplay();
+    }
+    // 更新难度提示
+    updateDifficultyDisplay() {
+        this.difficultyDisplay.textContent = `当前难度：${this.game.size}x${this.game.size}`;
     }
 
     initEventListeners() {
@@ -158,6 +174,7 @@ class GameUI {
         // 新增：动态禁用按钮
         document.getElementById('increase-difficulty').disabled = (newSize === 4);
         document.getElementById('decrease-difficulty').disabled = (newSize === 3);
+        this.updateDifficultyDisplay(); // 添加更新显示
     }
 }
 

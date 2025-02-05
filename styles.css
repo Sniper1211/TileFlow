@@ -129,3 +129,9 @@ button:disabled {
         padding: 20px;
     }
 }
+
+#difficulty-display {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
