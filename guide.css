@@ -1,0 +1,145 @@
+/* 指南页面特定样式 */
+.guide-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+}
+
+/* 侧边导航 */
+.guide-sidebar {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+.guide-nav {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.guide-nav-item {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: #4a5568;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.guide-nav-item:hover {
+    background: #f7fafc;
+    color: #3498db;
+    transform: translateX(5px);
+}
+
+/* 主要内容区 */
+.guide-main {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.guide-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.guide-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.guide-section h2 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.guide-section h3 {
+    color: #4a5568;
+    margin: 1.5rem 0 1rem;
+    font-size: 1.3rem;
+}
+
+.guide-section p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.guide-section ul, 
+.guide-section ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.guide-section li {
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+/* 教程笔记样式 */
+.tutorial-note {
+    background: #ebf8ff;
+    border-left: 4px solid #3498db;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+}
+
+/* 开发日志样式 */
+.dev-log-entry {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed #edf2f7;
+}
+
+.dev-log-entry:last-child {
+    border-bottom: none;
+}
+
+/* FAQ样式 */
+.faq-item {
+    margin-bottom: 1.5rem;
+}
+
+.faq-item h3 {
+    color: #2d3748;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .guide-content {
+        grid-template-columns: 1fr;
+    }
+
+    .guide-sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+
+    .guide-nav {
+        display: flex;
+        overflow-x: auto;
+        padding: 1rem;
+        white-space: nowrap;
+    }
+
+    .guide-nav-item {
+        padding: 0.5rem 1rem;
+    }
+
+    .guide-main {
+        padding: 1.5rem;
+    }
+} 

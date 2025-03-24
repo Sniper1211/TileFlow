@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>数字华容道 | 游戏指南</title>
+    <meta name="description" content="数字华容道游戏指南，包含玩法说明、技巧攻略和常见问题解答">
+    
+    <!-- 样式和字体 -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="guide.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+    <!-- 页眉 -->
+    <header class="site-header">
+        <nav class="header-nav">
+            <a href="/" class="brand-logo">数字华容道</a>
+            <div class="nav-menu">
+                <a href="/" class="nav-item">返回游戏</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="guide-content">
+        <aside class="guide-sidebar">
+            <nav class="guide-nav">
+                <a href="#how-to-play" class="guide-nav-item">玩法说明</a>
+                <a href="#about-game" class="guide-nav-item">关于游戏</a>
+                <a href="#basic-tutorial" class="guide-nav-item">基础教程</a>
+                <a href="#advanced-tips" class="guide-nav-item">进阶技巧</a>
+                <a href="#project-intro" class="guide-nav-item">项目介绍</a>
+                <a href="#dev-log" class="guide-nav-item">开发日志</a>
+                <a href="#faq" class="guide-nav-item">常见问题</a>
+            </nav>
+        </aside>
+
+        <div class="guide-main">
+            <section id="how-to-play" class="guide-section">
+                <h2>玩法说明</h2>
+                <p>数字华容道是一个经典的滑块益智游戏。游戏目标是通过移动方块，将所有数字按照从小到大的顺序排列。</p>
+                <h3>基本规则</h3>
+                <ul>
+                    <li>游戏面板上有 n×n 个格子（n=3或4），其中包含 n²-1 个数字方块和1个空格</li>
+                    <li>可以通过滑动与空格相邻的方块来移动数字</li>
+                    <li>当所有数字按1,2,3...的顺序排列时，游戏胜利</li>
+                </ul>
+                <h3>操作方式</h3>
+                <ul>
+                    <li>电脑端：使用键盘方向键移动方块</li>
+                    <li>移动端：滑动屏幕移动方块</li>
+                    <li>点击"重新开始"可以重置当前难度的游戏</li>
+                    <li>使用难度控制按钮可以在3×3和4×4之间切换</li>
+                </ul>
+            </section>
+
+            <section id="about-game" class="guide-section">
+                <h2>关于游戏</h2>
+                <p>数字华容道（又称数字推盘）是一个历史悠久的智力游戏，不仅能够锻炼玩家的空间思维能力，还可以培养逻辑推理能力。</p>
+                <p>本项目是一个开源的Web实现版本，添加了智能解题算法，可以帮助玩家学习最优解法。项目使用纯前端技术开发，无需后端服务器支持。</p>
+            </section>
+
+            <section id="basic-tutorial" class="guide-section">
+                <h2>基础教程</h2>
+                <h3>3×3布局入门技巧</h3>
+                <ol>
+                    <li>先确定1、2的位置</li>
+                    <li>将3放在第一行最右边</li>
+                    <li>依次解决第二行的数字</li>
+                    <li>最后处理剩余数字</li>
+                </ol>
+                <div class="tutorial-note">
+                    <p>💡 提示：解题时要注意保护已经就位的数字，避免破坏已完成的部分</p>
+                </div>
+            </section>
+
+            <section id="advanced-tips" class="guide-section">
+                <h2>进阶技巧</h2>
+                <h3>4×4高级策略</h3>
+                <ol>
+                    <li>分块法：先完成2×2的小块，再整体移动</li>
+                    <li>蛇形法：按照S形路线依次排列数字</li>
+                    <li>角块法：优先处理四个角落的数字</li>
+                </ol>
+                <h3>最优解思路</h3>
+                <p>游戏中的AI解题使用了IDA*算法，这是一种结合了迭代加深搜索和A*启发式搜索的算法。通过计算每个数字到目标位置的曼哈顿距离，可以估算出最少需要多少步完成游戏。</p>
+            </section>
+
+            <section id="project-intro" class="guide-section">
+                <h2>项目介绍</h2>
+                <p>这是一个基于Web技术的开源项目，主要特点：</p>
+                <ul>
+                    <li>纯前端实现，无需后端服务</li>
+                    <li>支持移动端适配</li>
+                    <li>集成智能解题算法</li>
+                    <li>本地记录最佳成绩</li>
+                </ul>
+                <p>项目代码已开源，欢迎访问GitHub仓库了解更多信息或贡献代码。</p>
+            </section>
+
+            <section id="dev-log" class="guide-section">
+                <h2>开发日志</h2>
+                <div class="dev-log-entry">
+                    <h3>2024.3.20 - v1.0.0发布</h3>
+                    <ul>
+                        <li>完成基础游戏功能</li>
+                        <li>添加计时器和移动步数统计</li>
+                        <li>实现本地最佳成绩记录</li>
+                    </ul>
+                </div>
+                <div class="dev-log-entry">
+                    <h3>2024.3.15 - Beta版本</h3>
+                    <ul>
+                        <li>优化移动端体验</li>
+                        <li>添加AI解题功能</li>
+                        <li>完善游戏说明文档</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="faq" class="guide-section">
+                <h2>常见问题</h2>
+                <div class="faq-item">
+                    <h3>Q: 游戏是否一定有解？</h3>
+                    <p>A: 不是所有的数字排列都有解。游戏会自动生成可解的谜题，确保玩家能够完成游戏。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Q: 如何使用AI解题功能？</h3>
+                    <p>A: 点击游戏界面的"AI解题"按钮，系统会自动计算最优解并演示解题过程。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Q: 游戏数据会保存吗？</h3>
+                    <p>A: 游戏会在本地保存您的最佳成绩记录，但刷新页面会重置当前游戏进度。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 简约页脚 -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="legal-info">
+                <p>Made with ❤️ by SniperX</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
