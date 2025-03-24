@@ -155,10 +155,11 @@ body {
 
 /* 页脚样式 */
 .site-footer {
-    background: #2c3e50;
-    color: #ecf0f1;
+    background: #f8f9fa;
+    color: #2c3e50;
     margin-top: 4rem;
     padding: 3rem 0;
+    border-top: 1px solid #e9ecef;
 }
 
 .footer-container {
@@ -173,18 +174,22 @@ body {
 .footer-section h4 {
     color: #3498db;
     margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .footer-section a {
-    color: #bdc3c7;
+    color: #6c757d;
     text-decoration: none;
     display: block;
     margin: 0.5rem 0;
     transition: color 0.3s;
+    font-size: 0.95rem;
 }
 
 .footer-section a:hover {
     color: #3498db;
+    transform: translateX(5px);
 }
 
 .legal-info {
@@ -192,14 +197,26 @@ body {
     text-align: center;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid #34495e;
+    border-top: 1px solid #e9ecef;
+    font-size: 0.9rem;
+    color: #6c757d;
 }
 
 .social-links {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    transform: translateY(-3px);
 }
 
 /* 响应式设计 */
