@@ -9,13 +9,27 @@
     <title>TileFlow 数字华容道 | 智能解谜游戏</title>
     <meta name="description" content="TileFlow 提供专业级数字华容道体验，支持智能解题算法和跨平台游戏记录同步">
     <meta name="keywords" content="数字华容道, 智力游戏, 算法解谜, 在线游戏, 教育游戏">
-    <meta name="author" content="TileFlow Inc.">
+    <meta name="author" content="SniperX">
 
     <!-- 样式和字体 -->
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9245714228354292" crossorigin="anonymous"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    
+    <!-- 移动端优化 -->
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- 社交分享优化 -->
+    <meta property="og:title" content="数字华容道 | 智能解谜游戏">
+    <meta property="og:description" content="一款简单有趣的数字华容道游戏，支持智能解题">
+    <meta property="og:image" content="assets/og-image.png">
 </head>
 
 <body>
@@ -36,7 +50,9 @@
     <!-- 游戏主区域 -->
     <main class="game-section">
         <div class="game-container">
-            <h1 class="game-title">TileFlow 数字华容道</h1>
+            <h1 class="game-title">数字华容道</h1>
+            <p class="game-description">通过移动方块，将数字排列成正确顺序</p>
+            
             <div class="puzzle-board" id="puzzle-board"></div>
             
             <div class="controls">
@@ -46,9 +62,15 @@
                     <span class="difficulty-display">3×3</span>
                     <button id="increase-difficulty" class="control-btn">►</button>
                 </div>
-                <button id="auto-solve" class="control-btn premium-feature">AI解题</button>
+                <button id="auto-solve" class="control-btn">AI解题</button>
             </div>
-            <p id="move-counter" class="stats-display">移动次数: 0</p>
+            <div class="game-stats">
+                <p id="move-counter" class="stats-display">移动次数: 0</p>
+                <p id="time-counter" class="stats-display">用时: 00:00</p>
+            </div>
+            <div class="game-controls-help">
+                <p>键盘方向键或滑动屏幕移动方块</p>
+            </div>
         </div>
     </main>
 

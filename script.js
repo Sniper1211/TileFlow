@@ -76,6 +76,7 @@ class GameUI {
     constructor() {
         this.board = document.getElementById('puzzle-board');
         this.moveCounter = document.getElementById('move-counter');
+        this.timeCounter = document.getElementById('time-counter');
         
         // 安全创建难度显示
         this.difficultyDisplay = document.getElementById('difficulty-display');
@@ -88,11 +89,31 @@ class GameUI {
         }
         
         this.game = new GameState();
+        this.startTime = null;
+        this.timerInterval = null;
+        this.initTimer();
         this.initEventListeners();
         this.render();
         this.updateDifficultyDisplay();
+        this.loadBestScores();
     }
-    // 更新难度提示
+
+    initTimer() {
+        this.startTime = new Date();
+        this.timerInterval = setInterval(() => {
+            const now = new Date();
+            const diff = Math.floor((now - this.startTime) / 1000);
+            const minutes = Math.floor(diff / 60).toString().padStart(2, '0');
+            const seconds = (diff % 60).toString().padStart(2, '0');
+            this.timeCounter.textContent = `用时: ${minutes}:${seconds}`;
+        }, 1000);
+    }
+
+    resetTimer() {
+        clearInterval(this.timerInterval);
+        this.initTimer();
+    }
+
     updateDifficultyDisplay() {
         this.difficultyDisplay.textContent = `当前难度：${this.game.size}x${this.game.size}`;
     }
@@ -139,12 +160,42 @@ class GameUI {
         }
     }
 
-    // 新增胜利提示方法
+    loadBestScores() {
+        this.bestScores = JSON.parse(localStorage.getItem('bestScores')) || {};
+    }
+
+    saveBestScore(size, moves, time) {
+        const key = `${size}x${size}`;
+        const currentBest = this.bestScores[key];
+        
+        if (!currentBest || moves < currentBest.moves) {
+            this.bestScores[key] = { moves, time };
+            localStorage.setItem('bestScores', JSON.stringify(this.bestScores));
+            return true;
+        }
+        return false;
+    }
+
     showWinAlert() {
-        alert(`恭喜！您用 ${this.game.moves} 步完成游戏！`);
-        // 禁用操作输入
-        document.removeEventListener('keydown', this.boundKeyHandler);
-        this.board.style.pointerEvents = 'none';
+        this.board.classList.add('win');
+        clearInterval(this.timerInterval);
+        
+        // 使用更友好的胜利提示
+        const time = this.timeCounter.textContent.replace('用时: ', '');
+        const isNewRecord = this.saveBestScore(this.game.size, this.game.moves, time);
+        
+        const message = `
+            🎉 太棒了！
+            你用了 ${this.game.moves} 步
+            耗时 ${time}
+            完成了 ${this.game.size}x${this.game.size} 的谜题！
+            ${isNewRecord ? '\n🏆 新纪录！' : ''}
+        `;
+        
+        setTimeout(() => {
+            alert(message);
+            this.board.classList.remove('win');
+        }, 500);
     }
 
     render() {
@@ -164,6 +215,7 @@ class GameUI {
         // 重新初始化游戏
         this.game = new GameState(this.game.size);
         this.render();
+        this.resetTimer();
     }
 
     changeSize(delta) {

@@ -118,17 +118,25 @@ body {
 }
 
 .control-btn {
-    background: #2c3e50;
+    background: #4a90e2;
     color: white;
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
+    font-size: 0.9rem;
 }
 
 .control-btn:hover {
-    background: #34495e;
+    background: #357abd;
+    transform: translateY(-2px);
+}
+
+.control-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
 }
 
 /* 功能展示 */
@@ -225,13 +233,29 @@ body {
     }
 
     .game-container {
-        padding: 1.5rem;
+        padding: 1rem;
+        margin: 0 1rem;
     }
 
     .puzzle-tile {
         width: 60px;
         height: 60px;
         font-size: 1.2rem;
+    }
+
+    .controls {
+        gap: 0.5rem;
+    }
+
+    .control-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .game-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
     }
 }
 
@@ -265,4 +289,54 @@ body {
     0% { transform: scale(0.8); opacity: 0.5; }
     50% { transform: scale(1.2); opacity: 0.2; }
     100% { transform: scale(0.8); opacity: 0.5; }
+}
+
+/* 游戏说明文字 */
+.game-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* 游戏数据显示 */
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.stats-display {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 操作提示 */
+.game-controls-help {
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+/* 添加胜利动画 */
+@keyframes win-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.puzzle-board.win {
+    animation: win-animation 0.5s ease;
+}
+
+/* 添加触摸反馈 */
+@media (hover: none) {
+    .puzzle-tile:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
 }
