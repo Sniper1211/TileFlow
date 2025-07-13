@@ -7,6 +7,35 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.win-message {
+    font-size: 24px;
+    color: #f59563;
+    font-weight: bold;
+    display: none;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background-color: rgba(245, 149, 99, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    line-height: 1.8;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.info-tip {
+    margin: 0 0 15px;
+    font-size: 14px;
+    color: #7d6a55;
+    font-weight: 500;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    color: #8f7a66;
+    font-size: 1.3rem;
+}
+
 body {
     background: #f8f9fa;
     line-height: 1.6;
@@ -14,9 +43,9 @@ body {
 
 /* 页眉样式 */
 .site-header {
-    background: #4a90e2;  /* 更友好的蓝色 */
+    background: #8f7a66;  /* 统一棕色系配色 */
     padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .header-nav {
@@ -61,7 +90,7 @@ body {
     left: 0;
     width: 100%;
     height: 2px;
-    background: white;
+    background: #f8d7a5;
 }
 
 .cta-button {
@@ -86,23 +115,36 @@ body {
 
 .puzzle-board {
     display: grid;
-    gap: 10px;
-    margin: 2rem 0;
+    gap: 5px;
+    background: #bbada0;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px auto;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
     justify-content: center;
 }
 
 .puzzle-tile {
     width: 80px;
     height: 80px;
-    background: #3498db;
-    color: white;
-    border-radius: 8px;
+    background: #eee4da;
+    color: #776e65;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: background 0.2s, transform 0.2s;
+    user-select: none;
+}
+.puzzle-tile:hover:not(.empty) {
+    background: #ede0c8;
+}
+.puzzle-tile.empty {
+    background: #cdc1b4;
+    cursor: default;
 }
 
 .puzzle-tile:hover {
@@ -118,7 +160,7 @@ body {
 }
 
 .control-btn {
-    background: #4a90e2;
+    background: #8f7a66;
     color: white;
     padding: 0.8rem 1.5rem;
     border: none;
@@ -126,11 +168,13 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .control-btn:hover {
-    background: #357abd;
+    background: #9f8b77;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .control-btn:disabled {
@@ -153,9 +197,10 @@ body {
     background: white;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 2rem;
 }
 
 .feature-card:hover {
@@ -202,18 +247,16 @@ body {
 }
 
 .footer-section a:hover {
-    color: #3498db;
+    color: #f8d7a5;
     transform: translateX(5px);
 }
 
 .legal-info {
-    grid-column: 1 / -1;
+    color: #f1e5d8;
     text-align: center;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid #e9ecef;
-    font-size: 0.9rem;
-    color: #6c757d;
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
 
 .social-links {
@@ -293,10 +336,11 @@ body {
 
 /* 游戏说明文字 */
 .game-description {
-    text-align: center;
-    color: #666;
     margin-bottom: 1.5rem;
-    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    white-space: pre-line;
 }
 
 /* 游戏数据显示 */
@@ -308,18 +352,23 @@ body {
 }
 
 .stats-display {
-    color: #666;
-    font-size: 0.9rem;
+    margin: 0 1rem;
+    color: #7d6a55;
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 /* 操作提示 */
 .game-controls-help {
     text-align: center;
-    color: #888;
-    font-size: 0.85rem;
-    margin-top: 1.5rem;
+    color: #7d6a55;
+    font-size: 0.9rem;
+    margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid #eee;
+    line-height: 1.6;
+    white-space: pre-line;
 }
 
 /* 添加胜利动画 */

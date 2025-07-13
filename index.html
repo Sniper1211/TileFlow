@@ -60,12 +60,14 @@
     <main class="game-section">
         <div class="game-container">
             <h1 class="game-title">数字华容道</h1>
+            <p class="info-tip">通过“反向随机行走”打乱，100%可解！</p>
             <p class="game-description">通过移动方块，将数字排列成正确顺序</p>
             
             <div class="puzzle-board" id="puzzle-board"></div>
             
             <div class="controls">
-                <button id="reset-button" class="control-btn">重新开始</button>
+                <button id="newBtn" class="control-btn">新游戏</button>
+                <button id="resetBtn" class="control-btn">重置</button>
                 <div class="difficulty-controls">
                     <button id="decrease-difficulty" class="control-btn">◄</button>
                     <span class="difficulty-display">3×3</span>
@@ -76,6 +78,7 @@
             <div class="game-stats">
                 <p id="move-counter" class="stats-display">移动次数: 0</p>
                 <p id="time-counter" class="stats-display">用时: 00:00</p>
+                <div class="win-message" id="winMsg">恭喜！你赢了！</div>
             </div>
             <div class="game-controls-help">
                 <p>键盘方向键或滑动屏幕移动方块</p>

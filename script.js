@@ -9,21 +9,37 @@ class GameState {
     }
 
     init() {
-        const total = this.size ** 2 - 1;
-        const numbers = Array.from({ length: total }, (_, i) => i + 1);
-        numbers.push(null);
-        
-        do {
-            numbers.sort(() => Math.random() - 0.5);
-        } while (!this.checkSolvability([...numbers]));
-        
-        this.tiles = numbers;
-        this.emptyIndex = numbers.indexOf(null);
+        this.shuffle(150 + Math.floor(Math.random() * 150));
+        this.history = [...this.tiles]; // 保存初始状态用于重置
     }
+
+    shuffle(steps) {
+        // 已完成状态
+        this.tiles = [...Array(this.size * this.size - 1).keys()].map(i => i + 1).concat(0);
+        this.emptyIndex = this.size * this.size - 1;
+
+        // 随机“反向”移动空格
+        const dirs = [-1, 1, -this.size, this.size]; // 左、右、上、下
+        for (let i = 0; i < steps; i++) {
+            const candidates = dirs
+                .map(d => this.emptyIndex + d)
+                .filter(ni => ni >= 0 && ni < this.size * this.size && 
+                           Math.abs(this.rc(ni).c - this.rc(this.emptyIndex).c) + 
+                           Math.abs(this.rc(ni).r - this.rc(this.emptyIndex).r) === 1);
+            if (!candidates.length) continue;
+            const next = candidates[Math.floor(Math.random() * candidates.length)];
+            [this.tiles[this.emptyIndex], this.tiles[next]] = [this.tiles[next], this.tiles[this.emptyIndex]];
+            this.emptyIndex = next;
+        }
+    }
+
+    // 工具方法
+    idx(r, c) { return r * this.size + c; }
+    rc(i) { return { r: Math.floor(i / this.size), c: i % this.size }; }
 
     checkSolvability(numbers) {
         const size = Math.sqrt(numbers.length);
-        const arr = numbers.filter(n => n !== null);
+        const arr = numbers.filter(n => n !== 0);
         let inversions = 0;
         
         for (let i = 0; i < arr.length; i++) {
@@ -33,7 +49,7 @@ class GameState {
         }
         
         if (size % 2 === 1) return inversions % 2 === 0;
-        const emptyRow = Math.floor(numbers.indexOf(null) / size);
+        const emptyRow = Math.floor(numbers.indexOf(0) / size);
         return (inversions + emptyRow) % 2 === 0;
     }
 
@@ -64,11 +80,10 @@ class GameState {
     }
 
     checkWin() {
-        // 排除空块检查（最后一个块不需要检查）
         for (let i = 0; i < this.tiles.length - 1; i++) {
             if (this.tiles[i] !== i + 1) return false;
         }
-        return true;
+        return this.tiles[this.tiles.length - 1] === 0;
     }
 }
 
@@ -142,7 +157,8 @@ class GameUI {
         });
 
         // 按钮事件
-        document.getElementById('reset-button').addEventListener('click', () => this.reset());
+        document.getElementById('newBtn').addEventListener('click', () => this.newGame());
+        document.getElementById('resetBtn').addEventListener('click', () => this.reset());
         document.getElementById('increase-difficulty').addEventListener('click', () => this.changeSize(1));
         document.getElementById('decrease-difficulty').addEventListener('click', () => this.changeSize(-1));
     }
@@ -180,20 +196,14 @@ class GameUI {
         this.board.classList.add('win');
         clearInterval(this.timerInterval);
         
-        // 使用更友好的胜利提示
         const time = this.timeCounter.textContent.replace('用时: ', '');
         const isNewRecord = this.saveBestScore(this.game.size, this.game.moves, time);
         
-        const message = `
-            🎉 太棒了！
-            你用了 ${this.game.moves} 步
-            耗时 ${time}
-            完成了 ${this.game.size}x${this.game.size} 的谜题！
-            ${isNewRecord ? '\n🏆 新纪录！' : ''}
-        `;
+        const winMsg = document.getElementById('winMsg');
+        winMsg.textContent = `🎉 恭喜！你用了 ${this.game.moves} 步，耗时 ${time} 完成了 ${this.game.size}x${this.game.size} 的谜题！${isNewRecord ? '\n🏆 新纪录！' : ''}`;
+        winMsg.style.display = 'block';
         
         setTimeout(() => {
-            alert(message);
             this.board.classList.remove('win');
         }, 500);
     }
@@ -201,8 +211,8 @@ class GameUI {
     render() {
         this.board.style.gridTemplateColumns = `repeat(${this.game.size}, 80px)`;
         this.board.innerHTML = this.game.tiles.map(num => `
-            <div class="puzzle-tile ${num === null ? 'empty' : ''}">
-                ${num ?? ''}
+            <div class="puzzle-tile ${num === 0 ? 'empty' : ''}">
+                ${num === 0 ? '' : num}
             </div>
         `).join('');
         this.moveCounter.textContent = `移动次数: ${this.game.moves}`;
