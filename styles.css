@@ -122,6 +122,8 @@ body {
     margin: 15px auto;
     box-shadow: 0 0 8px rgba(0,0,0,.2);
     justify-content: center;
+    max-width: 90vw;
+    max-height: 90vw;
 }
 
 .puzzle-tile {
@@ -358,6 +360,7 @@ body {
     font-size: 1.1rem;
     line-height: 1.6;
 }
+
 
 /* 操作提示 */
 .game-controls-help {
