@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX230B39FV"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-KX230B39FV');
@@ -13,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-9245714228354292">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO 优化 -->
     <title>TileFlow 数字华容道 | 智能解谜游戏</title>
     <meta name="description" content="TileFlow 提供专业级数字华容道体验，支持智能解题算法和跨平台游戏记录同步">
@@ -24,20 +25,76 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9245714228354292" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9245714228354292"
+        crossorigin="anonymous"></script>
 
     <!-- Favicon - 使用emoji作为临时图标 -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
-    
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
+
     <!-- 移动端优化 -->
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
+
     <!-- 社交分享优化 -->
     <meta property="og:title" content="数字华容道 | 智能解谜游戏">
     <meta property="og:description" content="一款简单有趣的数字华容道游戏，支持智能解题">
-    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.vercel.app">
+    <meta property="og:site_name" content="TileFlow">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="数字华容道 | 智能解谜游戏">
+    <meta name="twitter:description" content="一款简单有趣的数字华容道游戏，支持智能解题">
+
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "TileFlow 数字华容道",
+        "description": "专业级数字华容道体验，支持智能解题算法和跨平台游戏记录同步",
+        "genre": "Puzzle",
+        "gamePlatform": "Web Browser",
+        "operatingSystem": "Any",
+        "applicationCategory": "Game",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "SniperX"
+        }
+    }
+    </script>
+    <meta property="og:url" content="https://your-domain.vercel.app">
+
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "TileFlow 数字华容道",
+        "description": "专业级数字华容道体验，支持智能解题算法和跨平台游戏记录同步",
+        "genre": "Puzzle",
+        "gamePlatform": "Web Browser",
+        "operatingSystem": "Any",
+        "applicationCategory": "Game",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "SniperX"
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -61,9 +118,9 @@
             <h1 class="game-title">数字华容道</h1>
             <p class="info-tip">通过“反向随机行走”打乱，100%可解！</p>
             <p class="game-description">通过移动方块，将数字排列成正确顺序</p>
-            
+
             <div class="puzzle-board" id="puzzle-board"></div>
-            
+
             <div class="control-panel">
                 <div class="primary-controls">
                     <button id="newBtn" class="control-btn primary">新游戏</button>
@@ -133,7 +190,10 @@
         </div>
     </footer>
 
+    <script src="analytics.js" defer></script>
+    <script src="debug-analytics.js" defer></script>
     <script src="script.js" defer></script>
     <script src="solver.js" defer></script>
 </body>
+
 </html>

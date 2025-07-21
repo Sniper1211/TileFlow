@@ -238,6 +238,16 @@ class GameUI {
         const time = this.timeCounter.textContent.replace('用时: ', '');
         const isNewRecord = this.saveBestScore(this.game.size, this.game.moves, time);
         
+        // 统计游戏完成
+        if (window.gameAnalytics) {
+            window.gameAnalytics.trackGameComplete(
+                `${this.game.size}x${this.game.size}`,
+                this.game.moves,
+                time,
+                isNewRecord
+            );
+        }
+        
         const winMsg = document.getElementById('winMsg');
         winMsg.textContent = `🎉 恭喜！你用了 ${this.game.moves} 步，耗时 ${time} 完成了 ${this.game.size}x${this.game.size} 的谜题！${isNewRecord ? '\n🏆 新纪录！' : ''}`;
         winMsg.style.display = 'block';
@@ -287,6 +297,11 @@ class GameUI {
     }
 
 newGame() {
+    // 统计新游戏开始
+    if (window.gameAnalytics) {
+        window.gameAnalytics.trackGameStart(`${this.game.size}x${this.game.size}`);
+    }
+    
     this.game = new GameState(this.game.size);
     this.render();
     this.resetTimer();
