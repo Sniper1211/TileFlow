@@ -87,6 +87,14 @@ class GameState {
         }
         return this.tiles[this.tiles.length - 1] === 0;
     }
+
+    reset() {
+        // 恢复到初始状态
+        this.tiles = [...this.history];
+        this.moves = 0;
+        // 重新计算空方块位置
+        this.emptyIndex = this.tiles.indexOf(0);
+    }
 }
 
 class GameUI {
@@ -114,6 +122,11 @@ class GameUI {
     this.render();
     this.updateDifficultyDisplay();
     this.loadBestScores();
+    
+    // 窗口大小变化时重新渲染
+    window.addEventListener('resize', () => {
+        this.render();
+    });
     }
 
     initTimer() {
@@ -149,6 +162,7 @@ class GameUI {
         // 键盘事件
         document.addEventListener('keydown', (e) => {
             if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+                e.preventDefault(); // 阻止默认的页面滚动行为
                 this.handleMove(e.key);
             }
         });
@@ -156,12 +170,21 @@ class GameUI {
         // 触摸事件
         let touchStartX, touchStartY;
         this.board.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // 防止触摸时的默认行为
             touchStartX = e.touches[0].clientX;
             touchStartY = e.touches[0].clientY;
         });
         this.board.addEventListener('touchend', (e) => {
+            e.preventDefault(); // 防止触摸结束时的默认行为
+            if (!touchStartX || !touchStartY) return;
+            
             const deltaX = e.changedTouches[0].clientX - touchStartX;
             const deltaY = e.changedTouches[0].clientY - touchStartY;
+            
+            // 增加最小滑动距离阈值，避免误触
+            const minSwipeDistance = 30;
+            if (Math.abs(deltaX) < minSwipeDistance && Math.abs(deltaY) < minSwipeDistance) return;
+            
             const direction = Math.abs(deltaX) > Math.abs(deltaY) 
                 ? deltaX > 0 ? 'ArrowRight' : 'ArrowLeft'
                 : deltaY > 0 ? 'ArrowDown' : 'ArrowUp';
@@ -179,24 +202,15 @@ class GameUI {
         if (this.game.move(direction)) {
             // 如果计时器未运行，则启动计时器
             if (!this.isTimerRunning) {
-                this.startTime = new Date();
-                this.timerInterval = setInterval(() => {
-                    const now = new Date();
-                    const diff = Math.floor((now - this.startTime) / 1000);
-                    const minutes = Math.floor(diff / 60).toString().padStart(2, '0');
-                    const seconds = (diff % 60).toString().padStart(2, '0');
-                    this.timeCounter.textContent = `用时: ${minutes}:${seconds}`;
-                }, 1000);
+                this.initTimer();
                 this.isTimerRunning = true;
             }
             this.render();
-            
-            // 延迟胜利判定（等待动画完成）
-            setTimeout(() => {
-                if (this.game.checkWin()) {
-                    this.showWinAlert();
-                }
-            }, 300); // 匹配CSS过渡时长
+        
+            // 检查胜利条件
+            if (this.game.checkWin()) {
+                this.showWinAlert();
+            }
         }
     }
 
@@ -234,9 +248,13 @@ class GameUI {
     }
 
     render() {
-        this.board.style.gridTemplateColumns = `repeat(${this.game.size}, 80px)`;
+        // 响应式棋盘大小计算
+        const containerWidth = Math.min(400, window.innerWidth - 40);
+        const tileSize = Math.floor((containerWidth - (this.game.size + 1) * 5) / this.game.size);
+        
+        this.board.style.gridTemplateColumns = `repeat(${this.game.size}, ${tileSize}px)`;
         this.board.innerHTML = this.game.tiles.map(num => `
-            <div class="puzzle-tile ${num === 0 ? 'empty' : ''}">
+            <div class="puzzle-tile ${num === 0 ? 'empty' : ''}" style="width: ${tileSize}px; height: ${tileSize}px; font-size: ${Math.max(14, tileSize * 0.35)}px;">
                 ${num === 0 ? '' : num}
             </div>
         `).join('');
@@ -246,8 +264,8 @@ class GameUI {
     reset() {
     // 恢复操作输入
     this.board.style.pointerEvents = 'auto';
-    // 重新初始化游戏
-    this.game = new GameState(this.game.size);
+    // 恢复到当前游戏的初始状态
+    this.game.reset();
     this.render();
     this.resetTimer();
 }
@@ -255,6 +273,7 @@ class GameUI {
     changeSize(delta) {
         const newSize = this.game.size + delta;
         if (newSize < 3 || newSize > 6) return; // 扩展到6x6
+        this.isSolving = false; // 停止任何可能的AI解题
         this.game = new GameState(newSize);
         this.render();
         this.resetTimer(); // 重置计时器
@@ -278,5 +297,5 @@ newGame() {
 
 }
 
-// 初始化
-new GameUI();
+// 初始化并暴露到全局作用域供solver使用
+window.gameUI = new GameUI();

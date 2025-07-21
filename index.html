@@ -26,9 +26,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9245714228354292" crossorigin="anonymous"></script>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <!-- Favicon - 使用emoji作为临时图标 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
     
     <!-- 移动端优化 -->
     <meta name="theme-color" content="#4a90e2">
@@ -51,7 +50,7 @@
             <div class="nav-menu">
                 <a href="guide.html#how-to-play" class="nav-item">玩法说明</a>
                 <a href="guide.html#about-game" class="nav-item">关于游戏</a>
-                <a href="guide.html#feedback" class="nav-item">反馈建议</a>
+                <a href="guide.html#faq" class="nav-item">反馈建议</a>
             </div>
         </nav>
     </header>
@@ -65,21 +64,29 @@
             
             <div class="puzzle-board" id="puzzle-board"></div>
             
-            <div class="controls">
-                <button id="newBtn" class="control-btn">新游戏</button>
-                <button id="resetBtn" class="control-btn">重置</button>
-                <div class="difficulty-controls">
-                    <button id="decrease-difficulty" class="control-btn">◄</button>
-                    <span class="difficulty-display">3×3</span>
-                    <button id="increase-difficulty" class="control-btn">►</button>
+            <div class="control-panel">
+                <div class="primary-controls">
+                    <button id="newBtn" class="control-btn primary">新游戏</button>
+                    <button id="resetBtn" class="control-btn secondary">重置</button>
+                    <button id="auto-solve" class="control-btn ai-solve">AI解题</button>
                 </div>
-                <button id="auto-solve" class="control-btn">AI解题</button>
+                <div class="difficulty-selector">
+                    <button id="decrease-difficulty" class="control-btn icon-btn">◄</button>
+                    <span class="difficulty-display">3×3</span>
+                    <button id="increase-difficulty" class="control-btn icon-btn">►</button>
+                </div>
             </div>
             <div class="game-stats">
-    <p id="move-counter" class="stats-display">移动次数: 0</p>
-    <p id="time-counter" class="stats-display">用时: 00:00</p>
-    <div class="win-message" id="winMsg">恭喜！你赢了！</div>
-</div>
+                <div class="stat-item">
+                    <span class="stat-label">移动次数:</span>
+                    <span id="move-counter" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">用时:</span>
+                    <span id="time-counter" class="stat-value">00:00</span>
+                </div>
+                <div class="win-message" id="winMsg">恭喜！你赢了！</div>
+            </div>
             <div class="game-controls-help">
                 <p>键盘方向键或滑动屏幕移动方块</p>
             </div>
@@ -110,15 +117,15 @@
         <div class="footer-container">
             <div class="footer-section">
                 <h4>关于项目</h4>
-                <a href="#">项目介绍</a>
-                <a href="#">开发日志</a>
-                <a href="#">反馈建议</a>
+                <a href="guide.html#project-intro">项目介绍</a>
+                <a href="guide.html#dev-log">开发日志</a>
+                <a href="guide.html#faq">反馈建议</a>
             </div>
             <div class="footer-section">
                 <h4>玩法指南</h4>
-                <a href="#">基础教程</a>
-                <a href="#">进阶技巧</a>
-                <a href="#">常见问题</a>
+                <a href="guide.html#basic-tutorial">基础教程</a>
+                <a href="guide.html#advanced-tips">进阶技巧</a>
+                <a href="guide.html#faq">常见问题</a>
             </div>
             <div class="legal-info">
                 <p>Made with ❤️ by SniperX</p>
